@@ -1,30 +1,33 @@
-NAME    = PhoneBook
-CC      = c++
-FLAGS   = -Wall -Wextra -Werror -std=c++98
+NAME     = PhoneBook
+CC       = c++
+FLAGS    = -Wall -Wextra -Werror -std=c++98
+INCLUDES = -I.
 
+OBJS_DIR = obj
 
-SRCS = phonebook.cpp
+SRCS = main.cpp Contact.cpp PhoneBook.cpp
 
-OBJS = $(SRCS:%.cpp:%.o)
+OBJS = $(SRCS:%.cpp=$(OBJS_DIR)/%.o)
 
+all	: $(NAME)
 
-all     : $(NAME)
+$(NAME)	: $(OBJS)
+	$(CC) $(FLAGS) $(INCLUDES) $^ -o $@
 
-$(NAME) : $(OBJS)
-    $(CC) $(FLAGS) $^ -o $@
+$(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJS) : %.o : %.cpp
-    $(CC) $(FLAGS) -c $< -o $@
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
 
-clean 	:
-	rm -rf $(OBJS)
+clean	:
+	rm -rf $(OBJS_DIR)
 
-fclean :
-	clean
-	rm -rf $(OBJS)
-
-re 		:
-	fclean
+fclean	: clean
 	rm -rf $(NAME)
 
-.PHONY : all clean fclean re
+re	:
+	make fclean --no-print-directory
+	make all --no-print-directory
+
+.PHONY : all clean fclean

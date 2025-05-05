@@ -9,9 +9,9 @@ class Contact {
     std::string darkest_secret;
 
 public:
-    void set_firstname (std::string x); 
-    void set_lastname (std::string x); 
-    void set_nickname (std::string x); 
-    void set_phonenumber (std::string x); 
-    void set_darkestsecret (std::string x); 
+    void set_firstname (std::string x);
+    void set_lastname (std::string x);
+    void set_nickname (std::string x);
+    void set_phonenumber (std::string x);
+    void set_darkestsecret (std::string x);
 };
