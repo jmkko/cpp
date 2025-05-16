@@ -1,0 +1,3 @@
+[submodule "cpp00"]
+	path = cpp00
+	url = git@github.com:jmkko/cpp.git
