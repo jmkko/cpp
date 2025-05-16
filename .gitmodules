@@ -1,6 +1,3 @@
-[submodule "cpp00"]
-	path = cpp00
-	url = git@github.com:jmkko/cpp.git
 [submodule "cpp01"]
 	path = cpp01
 	url = git@github.com:jmkko/cpp01.git
@@ -28,3 +25,6 @@
 [submodule "cpp09"]
 	path = cpp09
 	url = git@github.com:jmkko/cpp09.git
+[submodule "cpp00"]
+	path = cpp00
+	url = git@github.com:jmkko/cpp00.git
