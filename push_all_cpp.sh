@@ -10,7 +10,15 @@ echo -e "${GREEN}📦 Poussée des submodules...${NC}"
 for module in cpp0{0..9}; do
     if [ -d "$module" ]; then
         echo -e "${GREEN}→ Traitement de $module${NC}"
-        cd "$module"
+        cd "$module" || continue
+
+        # Nettoyage dans tous les sous-dossiers de type exXX/
+        for exdir in ex*/; do
+            if [ -d "$exdir" ] && [ -f "$exdir/Makefile" ]; then
+                echo -e "${GREEN}🧹 make fclean dans $module/$exdir${NC}"
+                make -C "$exdir" fclean > /dev/null 2>&1
+            fi
+        done
         
         # Vérifie s'il y a des modifications
         if [[ -n $(git status --porcelain) ]]; then
