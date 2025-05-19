@@ -35,4 +35,5 @@ git commit -m "Mise à jour des submodules (auto)"
 git push
 
 echo -e "${GREEN}✅ Tout est à jour !${NC}"
+echo -e $USER
 
