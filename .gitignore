@@ -13,3 +13,4 @@ objs/
 *.orig
 Hazardous_miniRT
 *.dSYM
+*.code
