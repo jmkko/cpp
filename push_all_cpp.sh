@@ -19,12 +19,18 @@ for module in cpp0{0..9}; do
                 make -C "$exdir" fclean > /dev/null 2>&1
             fi
         done
-        
+        BRANCH=$(git symbolic-ref --short -q HEAD)
+
+        if [ -z "$BRANCH" ]; then
+          echo "🔧 HEAD détachée détectée, tentative de rattachement à origin/main"
+          git checkout -B main origin/main
+          BRANCH="main"
+        fi
         # Vérifie s'il y a des modifications
         if [[ -n $(git status --porcelain) ]]; then
             git add .
             git commit -m "Mise à jour automatique dans $module"
-            git push
+            git push origin "$BRANCH"
         else
             echo "Aucun changement dans $module"
         fi
